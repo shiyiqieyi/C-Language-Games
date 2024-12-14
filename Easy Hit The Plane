@@ -76,8 +76,8 @@ int main()
 		}
 		printf(" * *\n");
 
-// 		scanf("%c", &input);按回车*才会移动
-		input = getch();//实时移动
+		// 		scanf("%c", &input);按回车*才会移动
+		input = _getch();//实时移动
 
 		//飞机上下左右移动
 		if (input == 's')
@@ -105,5 +105,5 @@ int main()
 
 	}
 
-//system("pause");
+	//system("pause");
 }
