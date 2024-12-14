@@ -1,9 +1,10 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
-#include<conio.h>   //使用getch()函数 
+#include<conio.h>   //使用_getch()函数 
 #include<time.h> 
 #include <stdlib.h>
 int num[4][4];
-int score, gameover, ifappear, gamew, gamef,move;
+int score, gameover, ifappear, gamew, gamef, move;
 char key;
 void explation()
 {
@@ -23,7 +24,7 @@ void explation()
     printf("棋盘上出现2048，获胜，游戏结束\n");
     printf("按上下左右去移动滑块\n");
     printf("请按任意键返回主菜单...\n");
-    getch();
+    _getch();
     system("cls");
     main();
 }
@@ -37,9 +38,9 @@ void gamefaile()
     printf("\t\t*****************************************\n");
     printf("\t\t*****************************************\t\t\n");
     printf("\t\t\t---------------------\n\t\t\t");
-    for (j = 0; j<4; j++)
+    for (j = 0; j < 4; j++)
     {
-        for (i = 0; i<4; i++)
+        for (i = 0; i < 4; i++)
             if (num[j][i] == 0)
                 printf("|    ");
             else
@@ -47,12 +48,12 @@ void gamefaile()
         printf("|\n");
         printf("\t\t\t---------------------\n\t\t\t");
     }
-    printf("你的成绩：%d,移动了%d步\n", score,move);
+    printf("你的成绩：%d,移动了%d步\n", score, move);
     printf("请按任意键返回主菜单...\n");
-    getch();
+    _getch();
     system("cls");
     main();
- 
+
 }
 void gamewin()
 {
@@ -64,9 +65,9 @@ void gamewin()
     printf("\t\t*****************************************\n");
     printf("\t\t*****************************************\t\t\n");
     printf("\t\t\t---------------------\n\t\t\t");
-    for (j = 0; j<4; j++)
+    for (j = 0; j < 4; j++)
     {
-        for (i = 0; i<4; i++)
+        for (i = 0; i < 4; i++)
             if (num[j][i] == 0)
                 printf("|    ");
             else
@@ -74,9 +75,9 @@ void gamewin()
         printf("|\n");
         printf("\t\t\t---------------------\n\t\t\t");
     }
-    printf("你的成绩：%d,移动了%d步\n", score,move);
+    printf("你的成绩：%d,移动了%d步\n", score, move);
     printf("请按任意键返回主菜单...\n");
-    getch();
+    _getch();
     system("cls");
     main();
 }
@@ -92,9 +93,9 @@ void prin()
     printf("\t\t      请按方向键或W、A、S、D移动滑块\n");//输出操作提示语句
     printf("\t\t          按ESC返回至主菜单\n");
     printf("\t\t\t---------------------\n\t\t\t");
-    for (j = 0; j<4; j++)                 //输出4*4的表格
+    for (j = 0; j < 4; j++)                 //输出4*4的表格
     {
-        for (i = 0; i<4; i++)
+        for (i = 0; i < 4; i++)
             if (num[j][i] == 0)
                 printf("|    ");
             else
@@ -102,11 +103,11 @@ void prin()
         printf("|\n");
         printf("\t\t\t---------------------\n\t\t\t");
     }
-    printf("你的成绩：%d，移动了%d步\n", score,move);//输出得分和移动步数
+    printf("你的成绩：%d，移动了%d步\n", score, move);//输出得分和移动步数
 }
 void appear()
 {
-    int i, j,ran,t[16],x=0,a,b;
+    int i, j, ran, t[16], x = 0, a, b;
     srand((int)time(0));          //随机种子初始化
     for (j = 0; j < 4; j++)      //将空白的区域的坐标保存到中间数组t中
         for (i = 0; i < 4;i++)
@@ -122,7 +123,7 @@ void appear()
     a = t[ran] / 10;      //取出这个数值的十位数
     b = t[ran] % 10;     //取出这个数值的个位数
     srand((int)time(0));
-    if ((rand() % 9)>2)    //在此空白区域随机赋值2或4
+    if ((rand() % 9) > 2)    //在此空白区域随机赋值2或4
         num[a][b] = 2;
     else
         num[a][b] = 4;
@@ -131,11 +132,11 @@ void close()
 {
     exit(0);
 }
-void add(int *p)
+void add(int* p)
 {
-     
-    int i=0, b;
-    while (i<3)
+
+    int i = 0, b;
+    while (i < 3)
     {
         if (*(p + i) != 0)
         {
@@ -144,14 +145,14 @@ void add(int *p)
                 if (*(p + b) != 0)
                     if (*(p + i) == *(p + b))
                     {
-                    score = score + (*(p + i)) + (*(p + b));
-                    *(p + i) = *(p + i) + *(p + b);
-                    if (*(p + i) == 2048)
-                        gamew = 1;
-                    *(p + b) = 0;
-                    i = b + i;
-                    ++ifappear;
-                    break;
+                        score = score + (*(p + i)) + (*(p + b));
+                        *(p + i) = *(p + i) + *(p + b);
+                        if (*(p + i) == 2048)
+                            gamew = 1;
+                        *(p + b) = 0;
+                        i = b + i;
+                        ++ifappear;
+                        break;
                     }
                     else
                     {
@@ -165,7 +166,7 @@ void add(int *p)
         else
             i++;
     }
- 
+
 }
 void Gameplay()
 {
@@ -174,10 +175,10 @@ void Gameplay()
     appear();
     while (1)
     {
-        if (ifappear!=0)
+        if (ifappear != 0)
             appear();
         prin();
-        key = getch();
+        key = _getch();
         switch (key)
         {
         case 'w':
@@ -204,9 +205,9 @@ void Gameplay()
                     }
                 }
             }
-            if (ifappear!=0)
+            if (ifappear != 0)
                 ++move;
-        break;
+            break;
         case 's':
         case 'S':
         case 80:
@@ -220,7 +221,7 @@ void Gameplay()
                 }
                 add(b);
                 e = 3;
-                for (g = 3; g>=0; g--)
+                for (g = 3; g >= 0; g--)
                 {
                     if (b[g] != 0)
                     {
@@ -233,7 +234,7 @@ void Gameplay()
             }
             if (ifappear != 0)
                 ++move;
-        break;
+            break;
         case 'a':
         case 'A':
         case  75:
@@ -252,7 +253,7 @@ void Gameplay()
                     if (b[g] != 0)
                     {
                         num[j][e] = b[g];
-                        if (g!=e)
+                        if (g != e)
                             ++ifappear;
                         e++;
                     }
@@ -260,7 +261,7 @@ void Gameplay()
             }
             if (ifappear != 0)
                 ++move;
-        break;
+            break;
         case 'd':
         case 'D':
         case  77:
@@ -274,12 +275,12 @@ void Gameplay()
                 }
                 add(b);
                 e = 3;
-                for (g = 3; g >=0; g--)
+                for (g = 3; g >= 0; g--)
                 {
                     if (b[g] != 0)
                     {
                         num[j][e] = b[g];
-                        if (g!=e)
+                        if (g != e)
                             ++ifappear;
                         e--;
                     }
@@ -287,12 +288,12 @@ void Gameplay()
             }
             if (ifappear != 0)
                 ++move;
-        break;
+            break;
         case 27:
             system("cls");
             main();
             break;
- 
+
         }
         for (j = 0; j < 4; j++)
         {
@@ -334,14 +335,14 @@ void Gameplay()
                             gamef = 1;
                     }
                 }
- 
+
             }
             if (gamef == 0)
                 break;
         }
         if (gamef == 1 || gamew == 1)
             break;
- 
+
     }
     if (gamef == 1)
         gamefaile();
